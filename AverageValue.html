@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Average Value of a Function</title>
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>
+$(function () {
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+    						template:       sagecell.templates.minimal,
+                           evalButtonText: 'Launch the Interactive Applet Now'});
+});
+    </script>
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Average Value of a Function</h1>
+
+<p>An Interactive Applet powered by Sage and MathJax.</p>
+<p>(By Kelsey Norman with HTML code from Prof. Gregory V. Bard)</p>
+
+<hr>
+
+<div class="compute">
+<script type="text/x-sage">
+
+@interact( layout=[ ['func'], ['lower', 'upper'], ['x_min', 'x_max'] ])
+def average_value( func = input_box( default = sin(x)/x, label = "function", width = 20), 
+        lower = input_box( default = 2, label = "lower bound", width = 5), 
+        upper = input_box( default = 6, label = "upper bound", width = 5), 
+        x_min = input_box( default = 0, label = "x min", width = 5), 
+        x_max = input_box( default = 8, label = "x max", width = 5) ) :
+            
+    f = func.function(x)
+            
+    graph_f = plot( f, x_min, x_max )
+    graph_shaded = plot( f, lower, upper, fill = True, fillcolor = '#e6ccff' )
+
+    (area, precision) = numerical_integral( f, lower, upper )
+    width = upper - lower
+    average = area / width
+    rectangle = polygon([ (lower, 0), (lower, average), (upper, average), (upper, 0) ], aspect_ratio = 
+"automatic")
+
+    print "The average value of the function on the region is " + str(average)   
+    graph = graph_f + graph_shaded + rectangle
+    graph.show() 
+    
+
+</script>
+</div>
+
+<hr>
+Last modified on June 13th, 2017.
+</body>
+</html>
