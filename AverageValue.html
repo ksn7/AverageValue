@@ -45,9 +45,9 @@ $(function () {
 <script type="text/x-sage">
 
 @interact( layout=[ ['func'], ['lower', 'upper'], ['x_min', 'x_max'] ])
-def average_value( func = input_box( default = sin(x)/x, label = "f(x) = ", width = 20), 
-        lower = input_box( default = 2, label = "a", width = 5), 
-        upper = input_box( default = 6, label = "b", width = 5), 
+def average_value( func = input_box( default = sin(x)/x, label = "function", width = 20), 
+        lower = input_box( default = 2, label = "lower bound", width = 5), 
+        upper = input_box( default = 6, label = "upper bound", width = 5), 
         x_min = input_box( default = 0, label = "x min", width = 5), 
         x_max = input_box( default = 8, label = "x max", width = 5) ) :
     
@@ -66,7 +66,7 @@ def average_value( func = input_box( default = sin(x)/x, label = "f(x) = ", widt
 
     # Check the bounds
     if lower == upper:
-        print "Please choose different bounds"
+        pretty_print( "Please choose different bounds" )
     
     # If bounds are arranged correctly    
     elif lower < upper:    
@@ -123,7 +123,7 @@ def average_value( func = input_box( default = sin(x)/x, label = "f(x) = ", widt
                 fillcolor = '#ff4d4d' )
 
     # Print the average value
-    print "The average value of the function on the region is " + str(average)   
+    pretty_print( "The average value of the function on the region is " + str(average) + "." )
     graph = graph_f + graph_shaded + rectangle
     graph.show()
 
@@ -131,6 +131,6 @@ def average_value( func = input_box( default = sin(x)/x, label = "f(x) = ", widt
 </div>
 
 <hr>
-Last modified on June 21st, 2017.
+Last modified on July 24th, 2017.
 </body>
 </html>
