@@ -53,9 +53,6 @@ def average_value( func = input_box( default = sin(x)/x, label = "$f(x) = $", wi
     
     # Avoid the deprecation warning        
     f = func.function(x)
-
-    # Set number of digits to display
-    num_digits = 7
     
     # Set up the function and shaded section        
     graph_f = plot( f, x_min, x_max )
@@ -126,7 +123,8 @@ def average_value( func = input_box( default = sin(x)/x, label = "$f(x) = $", wi
                 fillcolor = '#ff4d4d' )
 
     # Print the average value
-    pretty_print( "The average value of the function on the region is " + str(n(average, digits = num_digits)) + "." )
+    pretty_print( "The average value of the function on the region is %6.7f." %average )
+
     graph = graph_f + graph_shaded + rectangle
     graph.show()
 
@@ -134,6 +132,6 @@ def average_value( func = input_box( default = sin(x)/x, label = "$f(x) = $", wi
 </div>
 
 <hr>
-Last modified on August 15th, 2017.
+Last modified on August 16th, 2017.
 </body>
 </html>
